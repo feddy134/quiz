@@ -15,7 +15,7 @@ class SignUpView(APIView):
         data = {}
         if serializer.is_valid():
             user = serializer.save()
-            data['response'] = 'Successfully registered the user'
+            data['success'] = 'Successfully registered the user'
             data['username'] = user.username
             token = Token.objects.get(user=user).key
             data['token'] = token
@@ -34,6 +34,7 @@ class LogInView(APIView):
             validated_data = serializer.validated_data
             user = get_object_or_404(User, email=validated_data['email'])
             data['token'] = get_object_or_404(Token, user=user).key
+            data['user_type'] = user.role
         else:
             data = serializer.errors
         return Response(data)
