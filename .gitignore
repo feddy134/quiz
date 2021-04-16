@@ -12,9 +12,7 @@ db.sqlite3
 db.sqlite3-journal
 media
 !**/assets/media
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
+
 static
 # Backup files # 
 *.bak 
